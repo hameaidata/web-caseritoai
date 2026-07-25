@@ -10,7 +10,7 @@ export function Navbar() {
         <div className="flex justify-between h-16 items-center">
           <Link href="/" className="flex items-center gap-3">
             <Image
-              src="/logo-sm.png"
+              src="/logo.png"
               alt="CaseritoAI"
               width={48}
               height={48}
