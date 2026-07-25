@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, Globe, ShoppingBag, Wifi } from 'lucide-react';
+import { Mail, Phone, Globe, Lock } from 'lucide-react';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -12,9 +12,8 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-14 h-14 bg-blue-700 rounded-full flex items-center justify-center shadow-lg relative">
-                <ShoppingBag className="w-7 h-7 text-white" />
-                <Wifi className="w-3.5 h-3.5 text-white absolute bottom-0 right-0" />
+              <div className="w-14 h-14 bg-blue-700 rounded-full flex items-center justify-center shadow-lg">
+                <Lock className="w-8 h-8 text-white" />
               </div>
               <span className="font-bold text-xl text-white">
                 Caserito<span className="text-blue-400">AI</span>
