@@ -1,6 +1,6 @@
 'use client';
 
-import { Store } from 'lucide-react';
+import { ShoppingBag, Wifi } from 'lucide-react';
 import Link from 'next/link';
 
 export function Navbar() {
@@ -9,15 +9,13 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16 items-center">
           <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-blue-700 rounded-full flex items-center justify-center shadow-md">
-              <Store className="w-6 h-6 text-white" />
+            <div className="w-12 h-12 bg-blue-700 rounded-full flex items-center justify-center shadow-lg relative">
+              <ShoppingBag className="w-6 h-6 text-white" />
+              <Wifi className="w-3 h-3 text-white absolute bottom-0 right-0" />
             </div>
-            <div>
-              <span className="font-bold text-xl tracking-tight text-slate-800">
-                Caserito<span className="text-blue-600">AI</span>
-              </span>
-              <p className="text-xs text-slate-500 leading-none">Gestión inteligente</p>
-            </div>
+            <span className="font-bold text-xl tracking-tight text-slate-800">
+              Caserito<span className="text-blue-700">AI</span>
+            </span>
           </Link>
 
           <div className="hidden md:flex space-x-8">

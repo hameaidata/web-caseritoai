@@ -1,6 +1,6 @@
 'use client';
 
-import { Mail, Phone, Globe, Store } from 'lucide-react';
+import { Mail, Phone, Globe, ShoppingBag, Wifi } from 'lucide-react';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -12,15 +12,13 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
-                <Store className="w-7 h-7 text-white" />
+              <div className="w-14 h-14 bg-blue-700 rounded-full flex items-center justify-center shadow-lg relative">
+                <ShoppingBag className="w-7 h-7 text-white" />
+                <Wifi className="w-3.5 h-3.5 text-white absolute bottom-0 right-0" />
               </div>
-              <div>
-                <span className="font-bold text-xl text-white">
-                  Caserito<span className="text-blue-400">AI</span>
-                </span>
-                <p className="text-xs text-slate-400 leading-none">Gestión inteligente</p>
-              </div>
+              <span className="font-bold text-xl text-white">
+                Caserito<span className="text-blue-400">AI</span>
+              </span>
             </div>
             <p className="text-sm text-slate-400">
               Ayudando a las bodegas del Perú a dejar el cuaderno atrás, sin perder la confianza de sus clientes.
