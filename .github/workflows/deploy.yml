@@ -39,11 +39,16 @@ jobs:
         working-directory: ./frontend
         run: npm run build
 
+      - name: Copy build to root
+        run: |
+          mkdir -p ./build
+          cp -r ./frontend/out/* ./build/
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: build
-          path: ./frontend/out
+          path: ./build
           if-no-files-found: error
 
   deploy:
@@ -68,7 +73,7 @@ jobs:
       - name: Upload to Pages
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: './build'
 
       - name: Deploy to GitHub Pages
         id: deployment
