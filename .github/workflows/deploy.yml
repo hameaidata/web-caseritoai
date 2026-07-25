@@ -1,81 +1,75 @@
-name: Build and Deploy
+name: Build and Deploy to GitHub Pages
 
 on:
   push:
     branches:
       - main
-      - develop
   pull_request:
     branches:
       - main
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [22.x]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: '22.x'
           cache: 'npm'
+          cache-dependency-path: 'frontend/package-lock.json'
 
-      - name: Install dependencies (Frontend)
+      - name: Install dependencies
         working-directory: ./frontend
         run: npm install --legacy-peer-deps
 
-      - name: Build Frontend
+      - name: Build
         working-directory: ./frontend
         run: npm run build
 
-      - name: Fix permissions
-        run: find ./frontend/out -type f -exec chmod 644 {} \;
-
-      - name: Upload build artifacts
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: frontend-build
+          name: build
           path: ./frontend/out
+          if-no-files-found: error
 
   deploy:
     needs: build
-    runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Download build artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: frontend-build
-          path: ./out
+          name: build
+          path: .
 
-      - name: Deploy to server via SSH
-        uses: easingthemes/ssh-deploy@main
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: '-rltgoDzvO --delete'
-          SOURCE: 'out/'
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: 'node_modules/,.git/,.github/'
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
 
-      - name: Post-deploy tasks
-        uses: appleboy/ssh-action@master
+      - name: Upload to Pages
+        uses: actions/upload-pages-artifact@v3
         with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd ${{ secrets.REMOTE_TARGET }}
-            # Reiniciar servicio web si es necesario
-            # sudo systemctl restart nginx
-            echo "Deploy completed successfully!"
+          path: '.'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
