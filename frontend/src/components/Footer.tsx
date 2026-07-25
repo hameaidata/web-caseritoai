@@ -13,13 +13,15 @@ export function Footer() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <Image
-                src="/logo-sm.png"
-                alt="CaseritoAI"
-                width={56}
-                height={56}
-                className="w-14 h-14"
-              />
+              <div className="w-14 h-14 bg-[#2C4257] rounded-full flex items-center justify-center shadow-lg p-2">
+                <Image
+                  src="/logo.png"
+                  alt="CaseritoAI"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <span className="font-bold text-xl text-white">
                 Caserito<span className="text-[#A97A35]">AI</span>
               </span>
