@@ -77,19 +77,21 @@ export function Footer() {
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="/terminos"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors text-xs"
             >
               Términos y Condiciones
             </a>
+            <span className="text-slate-500">·</span>
             <a
               href="/privacidad"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors text-xs"
             >
               Política de Privacidad
             </a>
+            <span className="text-slate-500">·</span>
             <a
               href="/reembolsos"
-              className="hover:text-white transition-colors"
+              className="hover:text-white transition-colors text-xs"
             >
               Política de Reembolsos
             </a>
