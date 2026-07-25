@@ -1,73 +1,125 @@
 'use client';
 
-import { Check } from 'lucide-react';
+import { Check, Smartphone, Users, Building2, Store } from 'lucide-react';
+
+const PLANS = [
+  {
+    name: 'Bodega Familiar',
+    price: '40',
+    devices: 1,
+    icon: Smartphone,
+    features: [
+      'Clientes y fiados ilimitados',
+      'Proveedores y compras ilimitadas',
+      'Operaciones por voz con IA',
+      'Reportes PDF y Excel ejecutivos',
+    ],
+    highlighted: true,
+  },
+  {
+    name: 'Local (3 dispositivos)',
+    price: '100',
+    devices: 3,
+    icon: Users,
+    features: [
+      'Clientes y fiados ilimitados',
+      'Proveedores y compras ilimitadas',
+      'Operaciones por voz con IA',
+      'Reportes PDF y Excel ejecutivos',
+    ],
+  },
+  {
+    name: 'Local (5 dispositivos)',
+    price: '160',
+    devices: 5,
+    icon: Building2,
+    features: [
+      'Clientes y fiados ilimitados',
+      'Proveedores y compras ilimitadas',
+      'Operaciones por voz con IA',
+      'Reportes PDF y Excel ejecutivos',
+    ],
+  },
+  {
+    name: 'Empresa',
+    price: '290',
+    devices: 10,
+    icon: Store,
+    features: [
+      'Clientes y fiados ilimitados',
+      'Proveedores y compras ilimitadas',
+      'Operaciones por voz con IA',
+      'Reportes PDF y Excel ejecutivos',
+    ],
+  },
+];
 
 export function Pricing() {
   return (
     <section id="pricing" className="py-20 bg-slate-50">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-bold mb-4">Planes y precios</h2>
-          <p className="text-slate-600">Transparencia total. Sin costos ocultos.</p>
+          <h2 className="text-3xl font-bold mb-4">Elige tu plan</h2>
+          <p className="text-slate-600">Un precio por mes · Cancela cuando quieras</p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Free Trial */}
-          <div className="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm">
-            <h3 className="text-2xl font-bold mb-2">Prueba gratuita</h3>
-            <div className="text-4xl font-extrabold mb-6">
-              14 días <span className="text-lg text-slate-500 font-normal">gratis</span>
-            </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3 text-slate-700">
-                <Check className="text-emerald-600 flex-shrink-0" />
-                Sin necesidad de ingresar tarjeta
-              </li>
-              <li className="flex items-center gap-3 text-slate-700">
-                <Check className="text-emerald-600 flex-shrink-0" />
-                Hasta 10 operaciones por día
-              </li>
-              <li className="flex items-center gap-3 text-slate-700">
-                <Check className="text-emerald-600 flex-shrink-0" />
-                Acceso a funcionalidades básicas
-              </li>
-            </ul>
-            <button className="w-full py-3 rounded-xl font-bold border-2 border-slate-200 text-slate-700 hover:border-emerald-600 hover:text-emerald-600 transition-colors">
-              Iniciar prueba
-            </button>
-          </div>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          {PLANS.map((plan) => {
+            const Icon = plan.icon;
+            return (
+              <div
+                key={plan.name}
+                className={`rounded-2xl p-6 border-2 transition-all ${
+                  plan.highlighted
+                    ? 'border-emerald-600 bg-white shadow-lg'
+                    : 'border-slate-200 bg-white'
+                }`}
+              >
+                <div className="w-12 h-12 rounded-lg bg-slate-100 flex items-center justify-center mb-4">
+                  <Icon className="w-6 h-6 text-slate-700" />
+                </div>
 
-          {/* Pro Plan */}
-          <div className="bg-emerald-600 rounded-3xl p-8 border border-emerald-500 shadow-xl text-white relative transform md:-translate-y-4">
-            <div className="absolute top-0 right-6 transform -translate-y-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">
-              Recomendado
-            </div>
-            <h3 className="text-2xl font-bold mb-2 text-emerald-50">Plan Pro</h3>
-            <div className="text-4xl font-extrabold mb-6">
-              S/ 29.00{' '}
-              <span className="text-lg text-emerald-200 font-normal">/mes por disp.</span>
-            </div>
-            <ul className="space-y-4 mb-8">
-              <li className="flex items-center gap-3">
-                <Check className="text-yellow-400 flex-shrink-0" />
-                Operaciones ilimitadas
-              </li>
-              <li className="flex items-center gap-3">
-                <Check className="text-yellow-400 flex-shrink-0" />
-                Todos los reportes incluidos
-              </li>
-              <li className="flex items-center gap-3">
-                <Check className="text-yellow-400 flex-shrink-0" />
-                Soporte técnico incluido
-              </li>
-            </ul>
-            <button className="w-full py-3 rounded-xl font-bold bg-white text-emerald-700 hover:bg-emerald-50 transition-colors shadow-md">
-              Suscribirse ahora
-            </button>
-          </div>
+                <h3 className="text-lg font-bold mb-2">{plan.name}</h3>
+                <p className="text-xs text-slate-500 mb-4">{plan.devices} celular{plan.devices > 1 ? 'es' : ''}</p>
+
+                <div className="mb-6">
+                  <span className="text-3xl font-extrabold">S/{plan.price}</span>
+                  <span className="text-slate-600 text-sm">/mes</span>
+                </div>
+
+                <button
+                  className={`w-full py-2.5 rounded-lg font-bold mb-6 transition-colors text-sm ${
+                    plan.highlighted
+                      ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                      : 'border border-slate-300 text-slate-700 hover:border-emerald-600'
+                  }`}
+                >
+                  Elegir plan
+                </button>
+
+                <ul className="space-y-2.5">
+                  {plan.features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-2 text-sm text-slate-600">
+                      <Check className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
         </div>
 
-        <div className="text-center mt-8 text-sm text-slate-500">
+        <div className="bg-white rounded-xl p-6 border border-slate-200 text-center mb-8">
+          <p className="text-slate-700">
+            <strong>Bodega Familiar · 1 dispositivo(s) · S/39.90/mes</strong>
+          </p>
+          <p className="text-sm text-slate-500 mt-2">
+            Primer mes con descuento. Cancela cuando quieras.
+          </p>
+        </div>
+
+        <div className="text-center text-sm text-slate-600">
           ¿Tienes varios locales o empleados? Tenemos precios preferenciales.{' '}
           <a
             href="mailto:hameaidata@gmail.com"

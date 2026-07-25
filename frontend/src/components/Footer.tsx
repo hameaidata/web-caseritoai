@@ -11,11 +11,16 @@ export function Footer() {
         <div className="grid md:grid-cols-3 gap-8 mb-8 border-b border-slate-800 pb-8">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4 text-white">
-              <Store className="w-6 h-6 text-emerald-500" />
-              <span className="font-bold text-xl">
-                Caserito<span className="text-emerald-500">AI</span>
-              </span>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center shadow-lg">
+                <Store className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <span className="font-bold text-xl text-white">
+                  Caserito<span className="text-blue-400">AI</span>
+                </span>
+                <p className="text-xs text-slate-400 leading-none">Gestión inteligente</p>
+              </div>
             </div>
             <p className="text-sm text-slate-400">
               Ayudando a las bodegas del Perú a dejar el cuaderno atrás, sin perder la confianza de sus clientes.
