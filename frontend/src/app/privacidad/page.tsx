@@ -15,10 +15,20 @@ export default function Privacidad() {
         <p className="text-[#64748B] mb-8">Última actualización: julio 2026</p>
 
         <div className="prose prose-sm max-w-none space-y-6 text-[#0F172A]">
+          <section className="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-200">
+            <h3 className="font-bold text-lg mb-2">Información de la Empresa (Responsable del Tratamiento)</h3>
+            <ul className="space-y-1 text-sm">
+              <li><strong>Razón Social:</strong> hameraidata</li>
+              <li><strong>RUC:</strong> 10481247387</li>
+              <li><strong>Domicilio Fiscal:</strong> Empresa Virtual - Operaciones Online</li>
+              <li><strong>Email:</strong> hameaidata@gmail.com</li>
+            </ul>
+          </section>
+
           <section>
             <h2 className="text-2xl font-bold mb-3">1. Responsable del Tratamiento</h2>
             <p>
-              <strong>hameraidata</strong> es responsable del tratamiento de tus datos personales, conforme a la Ley N° 29733 de Protección de Datos Personales del Perú.
+              <strong>hameraidata</strong> (RUC: 10481247387) es responsable del tratamiento de tus datos personales, conforme a la Ley N° 29733 de Protección de Datos Personales del Perú.
             </p>
           </section>
 

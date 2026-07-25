@@ -14,6 +14,15 @@ export default function Reembolsos() {
         <h1 className="text-4xl font-bold mb-4 text-[#0F172A]">Política de Reembolsos y Cancelación</h1>
         <p className="text-[#64748B] mb-8">Última actualización: julio 2026</p>
 
+        <section className="bg-blue-50 p-4 rounded-lg mb-6 border border-blue-200">
+          <h3 className="font-bold text-lg mb-2">Información de Contacto para Disputas</h3>
+          <ul className="space-y-1 text-sm">
+            <li><strong>Email:</strong> hameaidata@gmail.com</li>
+            <li><strong>Empresa:</strong> hameraidata (RUC: 10481247387)</li>
+            <li><strong>Procesador de Pagos:</strong> Culqi</li>
+          </ul>
+        </section>
+
         <div className="prose prose-sm max-w-none space-y-6 text-[#0F172A]">
           <section>
             <h2 className="text-2xl font-bold mb-3">1. Período de Prueba Gratuita</h2>
