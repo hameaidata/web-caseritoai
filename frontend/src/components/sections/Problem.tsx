@@ -13,7 +13,7 @@ export function Problem() {
         <h2 className="text-3xl font-bold mb-6">El problema que resolvemos</h2>
 
         <p className="text-lg text-slate-600 leading-relaxed">
-          Miles de bodegas y negocios de barrio en el Perú siguen llevando el control de fiados, ventas y stock en cuadernos, apps de notas o de memoria. Esto genera cuentas que no cuadran a fin de mes, clientes que "olvidan" lo que deben, productos que se acaban sin aviso, y horas perdidas haciendo cuentas a mano cada noche — tiempo que el dueño del negocio podría usar para atender más clientes.
+          Miles de bodegas y negocios de barrio en el Perú siguen llevando el control de fiados, ventas y stock en cuadernos, apps de notas o de memoria. Esto genera cuentas que no cuadran a fin de mes, clientes que &quot;olvidan&quot; lo que deben, productos que se acaban sin aviso, y horas perdidas haciendo cuentas a mano cada noche — tiempo que el dueño del negocio podría usar para atender más clientes.
         </p>
       </div>
     </section>
