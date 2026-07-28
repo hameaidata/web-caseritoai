@@ -25,6 +25,11 @@ jobs:
 
       - name: Build
         working-directory: ./frontend
+        env:
+          NEXT_PUBLIC_CULQI_PUBLIC_KEY: ${{ secrets.CULQI_PUBLIC_KEY }}
+          CULQI_SECRET_KEY: ${{ secrets.CULQI_SECRET_KEY }}
+          NEXT_PUBLIC_API_URL: https://caseritoai.hameraidata.com
+          NEXT_PUBLIC_APP_URL: https://caserito.hameraidata.com
         run: npm run build
 
       - name: Create .nojekyll

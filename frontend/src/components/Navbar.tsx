@@ -45,12 +45,12 @@ export function Navbar() {
             </a>
           </div>
 
-          <a
-            href="#pricing"
+          <Link
+            href="/checkout"
             className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-full font-semibold transition-colors shadow-sm text-sm"
           >
             Prueba gratis 14 días
-          </a>
+          </Link>
         </div>
       </div>
     </nav>
