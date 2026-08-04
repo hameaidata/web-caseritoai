@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Mail, Phone, Globe } from 'lucide-react';
+import { Mail, Phone, Globe, Facebook, Linkedin, Twitter } from 'lucide-react';
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -49,21 +49,16 @@ export function Footer() {
 
           {/* Company Info */}
           <div>
-            <h4 className="text-white font-bold mb-4">
-              Información de la Empresa{' '}
-              <span className="text-xs font-normal text-emerald-400">(Req. Culqi)</span>
-            </h4>
+            <h4 className="text-white font-bold mb-4">Empresa</h4>
             <ul className="space-y-2 text-sm">
               <li>
-                <strong>Razón Social:</strong>{' '}
-                <span className="missing-data">[Razón Social]</span>
+                <strong>hameraidata</strong>
               </li>
               <li>
-                <strong>RUC:</strong> <span className="missing-data">[RUC]</span>
+                <strong>RUC:</strong> 10481247387
               </li>
               <li>
-                <strong>Domicilio Fiscal:</strong>{' '}
-                <span className="missing-data">[Domicilio]</span>
+                <strong>Operaciones:</strong> Online
               </li>
             </ul>
           </div>
@@ -79,21 +74,55 @@ export function Footer() {
               href="/terminos"
               className="hover:text-white transition-colors text-xs"
             >
-              Términos y Condiciones
+              Términos
             </a>
             <span className="text-slate-500">·</span>
             <a
               href="/privacidad"
               className="hover:text-white transition-colors text-xs"
             >
-              Política de Privacidad
+              Privacidad
             </a>
             <span className="text-slate-500">·</span>
             <a
               href="/reembolsos"
               className="hover:text-white transition-colors text-xs"
             >
-              Política de Reembolsos
+              Reembolsos
+            </a>
+            <span className="text-slate-500">·</span>
+            <a
+              href="/reclamaciones"
+              className="hover:text-white transition-colors text-xs"
+            >
+              Reclamaciones
+            </a>
+          </div>
+        </div>
+
+        {/* Social Media */}
+        <div className="border-t border-slate-800 mt-8 pt-8">
+          <div className="flex justify-center gap-6">
+            <a
+              href="https://facebook.com/caseritoai"
+              className="hover:text-white transition-colors"
+              title="Facebook"
+            >
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a
+              href="https://twitter.com/caseritoai"
+              className="hover:text-white transition-colors"
+              title="Twitter"
+            >
+              <Twitter className="w-5 h-5" />
+            </a>
+            <a
+              href="https://linkedin.com/company/caseritoai"
+              className="hover:text-white transition-colors"
+              title="LinkedIn"
+            >
+              <Linkedin className="w-5 h-5" />
             </a>
           </div>
         </div>
