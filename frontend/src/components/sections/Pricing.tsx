@@ -26,6 +26,8 @@ const PLANS = [
       'Proveedores y compras ilimitadas',
       'Operaciones por voz con IA',
       'Reportes PDF y Excel ejecutivos',
+      'Gestión de usuarios por rol',
+      'Soporte prioritario',
     ],
   },
   {
@@ -38,6 +40,8 @@ const PLANS = [
       'Proveedores y compras ilimitadas',
       'Operaciones por voz con IA',
       'Reportes PDF y Excel ejecutivos',
+      'Gestión de usuarios por rol',
+      'Personalización (logo/colores)',
     ],
   },
   {
@@ -50,6 +54,8 @@ const PLANS = [
       'Proveedores y compras ilimitadas',
       'Operaciones por voz con IA',
       'Reportes PDF y Excel ejecutivos',
+      'Analytics avanzado',
+      'Soporte VIP 24/7',
     ],
   },
 ];
