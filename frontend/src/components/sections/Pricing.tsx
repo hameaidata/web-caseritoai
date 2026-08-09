@@ -94,14 +94,16 @@ export function Pricing() {
                 </div>
 
                 <a
-                  href={`/checkout?plan=${plan.name.toLowerCase().replace(/\s+/g, '_')}`}
+                  href="https://play.google.com/store/apps/details?id=com.caseritoai.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-full py-2.5 rounded-lg font-bold mb-6 transition-colors text-sm block text-center ${
                     plan.highlighted
                       ? 'bg-[#2C4257] text-white hover:bg-opacity-90'
                       : 'border border-[#E5E3DF] text-[#0F172A] hover:border-[#2C4257]'
                   }`}
                 >
-                  Elegir plan
+                  📱 Descargar App
                 </a>
 
                 <ul className="space-y-2.5">
