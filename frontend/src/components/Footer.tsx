@@ -39,7 +39,7 @@ export function Footer() {
                 <Mail className="w-4 h-4" /> hameaidata@gmail.com
               </li>
               <li className="flex items-center gap-2">
-                <Phone className="w-4 h-4" /> <span className="missing-data">[Teléfono]</span>
+                <Phone className="w-4 h-4" /> +51 975682160
               </li>
               <li className="flex items-center gap-2">
                 <Globe className="w-4 h-4" /> caseritoai.hameraidata.com

@@ -203,7 +203,7 @@ export default function Reclamaciones() {
               <MessageSquare className="w-5 h-5 text-[#2C4257]" />
               <h3 className="font-bold">Teléfono de Contacto</h3>
             </div>
-            <p className="text-sm text-[#64748B]">+51 (por confirmar)</p>
+            <p className="text-sm text-[#64748B]">+51 975682160</p>
           </div>
         </div>
       </div>
