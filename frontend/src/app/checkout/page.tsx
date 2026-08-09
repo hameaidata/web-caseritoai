@@ -130,10 +130,92 @@ function CheckoutFallback() {
   );
 }
 
+function CheckoutHeader() {
+  return (
+    <div className="bg-gradient-to-b from-[#2C4257] to-[#1E2E3D] text-white py-12 mb-12">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Brand */}
+          <div>
+            <h1 className="text-3xl font-bold mb-2">CaseritoAI</h1>
+            <p className="text-[#A97A35] text-sm">
+              Ayudando a las bodegas del Perú a dejar el cuaderno atrás
+            </p>
+          </div>
+
+          {/* Contacto */}
+          <div>
+            <h3 className="font-bold mb-3 text-lg">Contacto</h3>
+            <ul className="space-y-2 text-sm text-slate-300">
+              <li>📧 hameaidata@gmail.com</li>
+              <li>📱 +51 975682160</li>
+              <li>🌐 caseritoai.hameraidata.com</li>
+            </ul>
+          </div>
+
+          {/* Empresa */}
+          <div>
+            <h3 className="font-bold mb-3 text-lg">Empresa</h3>
+            <ul className="space-y-2 text-sm text-slate-300">
+              <li>hameraidata</li>
+              <li>RUC: 10481247387</li>
+              <li>Operaciones: Online</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CheckoutPage() {
   return (
-    <Suspense fallback={<CheckoutFallback />}>
-      <CheckoutContent />
-    </Suspense>
+    <div className="min-h-screen bg-[#FAFAF9]">
+      <CheckoutHeader />
+      <Suspense fallback={<CheckoutFallback />}>
+        <CheckoutContent />
+      </Suspense>
+
+      {/* Planes disponibles */}
+      <div className="bg-white py-12 border-t border-[#E5E3DF]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-[#0F172A] mb-8 text-center">
+            O elige otro plan
+          </h2>
+          <div className="grid md:grid-cols-4 gap-6">
+            {Object.entries(PLANS).map(([key, plan]) => (
+              <a
+                key={key}
+                href={`/checkout?plan=${key}`}
+                className="p-6 border border-[#E5E3DF] rounded-lg hover:border-[#2C4257] hover:shadow-md transition-all"
+              >
+                <h3 className="font-bold text-[#0F172A] mb-2">{plan.name}</h3>
+                <p className="text-2xl font-bold text-[#2C4257] mb-4">S/ {plan.price}</p>
+                <p className="text-sm text-[#64748B]">{plan.devices}</p>
+                <button className="w-full mt-4 py-2 border border-[#2C4257] text-[#2C4257] rounded-lg font-semibold hover:bg-[#2C4257] hover:text-white transition-all text-sm">
+                  Seleccionar
+                </button>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Footer Legal */}
+      <div className="bg-[#2C4257] text-slate-300 py-8 mt-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm">
+          <p className="mb-4">&copy; 2026 CaseritoAI. Todos los derechos reservados.</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="/terminos" className="hover:text-white">Términos</a>
+            <span>·</span>
+            <a href="/privacidad" className="hover:text-white">Privacidad</a>
+            <span>·</span>
+            <a href="/reembolsos" className="hover:text-white">Reembolsos</a>
+            <span>·</span>
+            <a href="/reclamaciones" className="hover:text-white">Reclamaciones</a>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
