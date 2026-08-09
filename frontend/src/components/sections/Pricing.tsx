@@ -93,15 +93,16 @@ export function Pricing() {
                   <span className="text-slate-600 text-sm">/mes</span>
                 </div>
 
-                <button
-                  className={`w-full py-2.5 rounded-lg font-bold mb-6 transition-colors text-sm ${
+                <a
+                  href={`/checkout?plan=${plan.name.toLowerCase().replace(/\s+/g, '_')}`}
+                  className={`w-full py-2.5 rounded-lg font-bold mb-6 transition-colors text-sm block text-center ${
                     plan.highlighted
-                      ? 'bg-emerald-600 text-white hover:bg-emerald-700'
-                      : 'border border-slate-300 text-slate-700 hover:border-emerald-600'
+                      ? 'bg-[#2C4257] text-white hover:bg-opacity-90'
+                      : 'border border-[#E5E3DF] text-[#0F172A] hover:border-[#2C4257]'
                   }`}
                 >
                   Elegir plan
-                </button>
+                </a>
 
                 <ul className="space-y-2.5">
                   {plan.features.map((feature) => (

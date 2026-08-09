@@ -2,113 +2,102 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
-    const { plan, token, email, amount } = body;
+    const { plan, token, email, amount } = await request.json();
 
-    if (!plan || !token || !email || !amount) {
+    // Validar datos
+    if (!token || !email || !amount || !plan) {
       return NextResponse.json(
-        { error: 'Faltan datos requeridos' },
+        { success: false, error: 'Datos incompletos' },
         { status: 400 }
       );
     }
 
-    // Validar que el plan existe
-    const validPlans = ['familiar', 'local', 'empresa'];
-    if (!validPlans.includes(plan)) {
+    // Validar email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Plan inválido' },
+        { success: false, error: 'Email inválido' },
         { status: 400 }
       );
     }
 
-    // Obtener credenciales de Culqi desde variables de entorno
+    // Procesar pago con Culqi
     const culqiSecretKey = process.env.CULQI_SECRET_KEY;
 
     if (!culqiSecretKey) {
-      console.error('CULQI_SECRET_KEY no configurado');
+      console.error('CULQI_SECRET_KEY no está configurada');
       return NextResponse.json(
-        { error: 'Error de configuración del servidor' },
+        { success: false, error: 'Error en la configuración del servidor' },
         { status: 500 }
       );
     }
 
-    // Hacer cargo a Culqi
-    const culqiResponse = await fetch('https://api.culqi.com/v2/charges', {
+    // Crear cargo en Culqi
+    const chargeResponse = await fetch('https://api.culqi.com/v2/charges', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
         'Authorization': `Bearer ${culqiSecretKey}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
         amount: Math.round(amount * 100), // En centavos
         currency_code: 'PEN',
+        email,
         source_id: token,
-        description: `Suscripción CaseritoAI - Plan ${plan}`,
+        description: `Suscripción CaseritoAI - ${plan}`,
         metadata: {
           plan,
           email,
+          timestamp: new Date().toISOString(),
         },
       }),
     });
 
-    const chargeData = await culqiResponse.json();
+    const chargeData = await chargeResponse.json();
 
-    // Verificar resultado de Culqi
-    if (chargeData.outcome === 'venta_exitosa') {
-      // ✅ Pago exitoso
-      // Aquí idealmente enviarías la información a tu backend
-      // para registrar la suscripción en la BD
-
-      // Ejemplo: llamar a tu backend en AWS Lambda
-      try {
-        const backendUrl = process.env.NEXT_PUBLIC_API_URL || 'https://caseritoai.hameraidata.com';
-
-        await fetch(`${backendUrl}/api/v1/suscripcion/pagar`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            plan,
-            email,
-            token,
-            charge_id: chargeData.id,
-          }),
-        }).catch(err => {
-          // Log pero no bloquea - el pago ya se procesó en Culqi
-          console.error('Error notificando al backend:', err);
-        });
-      } catch (err) {
-        console.error('Error enviando a backend:', err);
-      }
-
-      return NextResponse.json(
-        {
-          success: true,
-          plan,
-          message: 'Pago procesado exitosamente',
-          charge_id: chargeData.id,
-        },
-        { status: 200 }
-      );
-    } else {
-      // ❌ Pago rechazado
+    if (!chargeResponse.ok) {
+      console.error('Culqi error:', chargeData);
       return NextResponse.json(
         {
           success: false,
-          error: chargeData.outcome || 'El pago fue rechazado',
-          message: chargeData.user_message || 'Intenta con otra tarjeta',
+          error: chargeData.merchant_message || 'Error procesando el pago',
         },
         { status: 400 }
       );
     }
-  } catch (error) {
-    console.error('Error en checkout:', error);
+
+    // Si el pago fue exitoso
+    if (chargeData.object === 'charge' && chargeData.status === 'paid') {
+      // TODO: Aquí guardar la suscripción en tu base de datos
+      // - Crear registro de usuario
+      // - Registrar suscripción
+      // - Enviar email de confirmación
+
+      return NextResponse.json(
+        {
+          success: true,
+          message: 'Pago procesado exitosamente',
+          chargeId: chargeData.id,
+          plan,
+          email,
+        },
+        { status: 200 }
+      );
+    }
+
     return NextResponse.json(
       {
         success: false,
-        error: 'Error procesando el pago',
-        message: error instanceof Error ? error.message : 'Error desconocido',
+        error: 'El pago no fue procesado. Intenta de nuevo.',
+      },
+      { status: 400 }
+    );
+  } catch (error) {
+    console.error('Checkout error:', error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: error instanceof Error ? error.message : 'Error desconocido',
       },
       { status: 500 }
     );
