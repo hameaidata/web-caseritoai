@@ -89,9 +89,50 @@ function CheckoutContent() {
   );
 }
 
+function CheckoutFallback() {
+  return (
+    <div className="min-h-screen bg-[#FAFAF9] flex items-center justify-center px-4 pt-20">
+      <div className="max-w-md w-full text-center">
+        <div className="mb-8">
+          <div className="text-6xl mb-4">📱</div>
+          <h1 className="text-3xl font-bold text-[#0F172A] mb-4">
+            Paga desde la app
+          </h1>
+          <p className="text-[#64748B] mb-8">
+            Para tu seguridad y mejor experiencia, los pagos se realizan exclusivamente desde la aplicación móvil CaseritoAI.
+          </p>
+        </div>
+
+        <a
+          href="https://play.google.com/store/apps/details?id=com.caseritoai.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="block w-full bg-[#2C4257] text-white py-4 rounded-lg font-bold hover:bg-opacity-90 transition-all mb-4"
+        >
+          Descargar en Play Store
+        </a>
+
+        <a
+          href="/"
+          className="block w-full bg-white border border-[#E5E3DF] text-[#0F172A] py-4 rounded-lg font-bold hover:bg-[#FAFAF9] transition-all"
+        >
+          Volver al inicio
+        </a>
+
+        <div className="mt-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+          <p className="text-sm text-[#0F172A]">
+            <strong>¿Problemas?</strong><br />
+            Contacta a soporte: hameaidata@gmail.com
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function CheckoutPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#FAFAF9]" />}>
+    <Suspense fallback={<CheckoutFallback />}>
       <CheckoutContent />
     </Suspense>
   );
